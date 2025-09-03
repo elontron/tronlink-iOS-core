@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00BAE471A3FFDB38203A5BE7 /* Pods_tronlink_iOS_core_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C6ECEC9675EBE073FCA9E /* Pods_tronlink_iOS_core_Tests.framework */; };
 		416FA8502BD647EC0097CB5A /* tronlink-iOS-core.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 416FA84F2BD647EC0097CB5A /* tronlink-iOS-core.podspec */; };
+		42B9D0C32D7788A55458BBC1 /* Pods_tronlink_iOS_core_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB3D99E8FAD662F28BCE9A1 /* Pods_tronlink_iOS_core_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		F5E600F73A3BBBC55A69B885 /* Pods_tronlink_iOS_core_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1535E637D0D256D1FDCA98D5 /* Pods_tronlink_iOS_core_Example.framework */; };
+		92F7AD1CE11990C55F606904 /* Pods_tronlink_iOS_core_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9DD41276C6CBBA11D931D00 /* Pods_tronlink_iOS_core_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,10 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1535E637D0D256D1FDCA98D5 /* Pods_tronlink_iOS_core_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tronlink_iOS_core_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		286A782E8856C1243D8296E8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		2CE200D68803A64152C3C0D1 /* Pods-tronlink-iOS-core_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tronlink-iOS-core_Example.release.xcconfig"; path = "Target Support Files/Pods-tronlink-iOS-core_Example/Pods-tronlink-iOS-core_Example.release.xcconfig"; sourceTree = "<group>"; };
 		416FA84F2BD647EC0097CB5A /* tronlink-iOS-core.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tronlink-iOS-core.podspec"; path = "../tronlink-iOS-core.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		48C1D85CDFDD798401F5C97E /* Pods-tronlink-iOS-core_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tronlink-iOS-core_Tests.release.xcconfig"; path = "Target Support Files/Pods-tronlink-iOS-core_Tests/Pods-tronlink-iOS-core_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		589458621B6EAAAB7B2FD2A6 /* Pods-tronlink-iOS-core_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tronlink-iOS-core_Tests.debug.xcconfig"; path = "Target Support Files/Pods-tronlink-iOS-core_Tests/Pods-tronlink-iOS-core_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* tronlink-iOS-core_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tronlink-iOS-core_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,10 +44,10 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		91F005CEF6C63E91468DEE6D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		92D996B9836DFD9A7C348724 /* Pods-tronlink-iOS-core_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tronlink-iOS-core_Example.debug.xcconfig"; path = "Target Support Files/Pods-tronlink-iOS-core_Example/Pods-tronlink-iOS-core_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		C89DB4AA1D8E4FE6A66C0FC1 /* Pods-tronlink-iOS-core_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tronlink-iOS-core_Tests.release.xcconfig"; path = "Target Support Files/Pods-tronlink-iOS-core_Tests/Pods-tronlink-iOS-core_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		DE0C6ECEC9675EBE073FCA9E /* Pods_tronlink_iOS_core_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tronlink_iOS_core_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8A3351B52EEAA53A623DC1A /* Pods-tronlink-iOS-core_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tronlink-iOS-core_Tests.debug.xcconfig"; path = "Target Support Files/Pods-tronlink-iOS-core_Tests/Pods-tronlink-iOS-core_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		ABB3D99E8FAD662F28BCE9A1 /* Pods_tronlink_iOS_core_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tronlink_iOS_core_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCD890005232447C6D8AD2EF /* Pods-tronlink-iOS-core_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tronlink-iOS-core_Example.release.xcconfig"; path = "Target Support Files/Pods-tronlink-iOS-core_Example/Pods-tronlink-iOS-core_Example.release.xcconfig"; sourceTree = "<group>"; };
+		BF7F4EE9928EAE24BAD40E71 /* Pods-tronlink-iOS-core_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tronlink-iOS-core_Example.debug.xcconfig"; path = "Target Support Files/Pods-tronlink-iOS-core_Example/Pods-tronlink-iOS-core_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E9DD41276C6CBBA11D931D00 /* Pods_tronlink_iOS_core_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tronlink_iOS_core_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5E600F73A3BBBC55A69B885 /* Pods_tronlink_iOS_core_Example.framework in Frameworks */,
+				42B9D0C32D7788A55458BBC1 /* Pods_tronlink_iOS_core_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00BAE471A3FFDB38203A5BE7 /* Pods_tronlink_iOS_core_Tests.framework in Frameworks */,
+				92F7AD1CE11990C55F606904 /* Pods_tronlink_iOS_core_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				75F8531E2891CEC0708CDB4F /* Pods */,
-				FFAB5FA589B8C0A7AF9D75FC /* Frameworks */,
+				AA655CF4388B29ED7668933D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,19 +143,19 @@
 		75F8531E2891CEC0708CDB4F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				92D996B9836DFD9A7C348724 /* Pods-tronlink-iOS-core_Example.debug.xcconfig */,
-				2CE200D68803A64152C3C0D1 /* Pods-tronlink-iOS-core_Example.release.xcconfig */,
-				F8A3351B52EEAA53A623DC1A /* Pods-tronlink-iOS-core_Tests.debug.xcconfig */,
-				C89DB4AA1D8E4FE6A66C0FC1 /* Pods-tronlink-iOS-core_Tests.release.xcconfig */,
+				BF7F4EE9928EAE24BAD40E71 /* Pods-tronlink-iOS-core_Example.debug.xcconfig */,
+				BCD890005232447C6D8AD2EF /* Pods-tronlink-iOS-core_Example.release.xcconfig */,
+				589458621B6EAAAB7B2FD2A6 /* Pods-tronlink-iOS-core_Tests.debug.xcconfig */,
+				48C1D85CDFDD798401F5C97E /* Pods-tronlink-iOS-core_Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		FFAB5FA589B8C0A7AF9D75FC /* Frameworks */ = {
+		AA655CF4388B29ED7668933D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1535E637D0D256D1FDCA98D5 /* Pods_tronlink_iOS_core_Example.framework */,
-				DE0C6ECEC9675EBE073FCA9E /* Pods_tronlink_iOS_core_Tests.framework */,
+				ABB3D99E8FAD662F28BCE9A1 /* Pods_tronlink_iOS_core_Example.framework */,
+				E9DD41276C6CBBA11D931D00 /* Pods_tronlink_iOS_core_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -167,11 +167,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "tronlink-iOS-core_Example" */;
 			buildPhases = (
-				D1912A9EBF0EE8CAAE29B35E /* [CP] Check Pods Manifest.lock */,
+				472DB3049F72123483DDBD88 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				711174B6CD3FDD1DD0E0D42F /* [CP] Embed Pods Frameworks */,
+				72512AC8A0B650F4CEF62EA5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -186,11 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "tronlink-iOS-core_Tests" */;
 			buildPhases = (
-				A93A571458A65DC47435FBAF /* [CP] Check Pods Manifest.lock */,
+				6152870894CB78B579445870 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				F01D8998E214E13571E20BEE /* [CP] Embed Pods Frameworks */,
+				99C9B2CBD8B2ECC7A63145FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -267,7 +267,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		711174B6CD3FDD1DD0E0D42F /* [CP] Embed Pods Frameworks */ = {
+		472DB3049F72123483DDBD88 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tronlink-iOS-core_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6152870894CB78B579445870 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tronlink-iOS-core_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72512AC8A0B650F4CEF62EA5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -323,51 +367,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tronlink-iOS-core_Example/Pods-tronlink-iOS-core_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A93A571458A65DC47435FBAF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-tronlink-iOS-core_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1912A9EBF0EE8CAAE29B35E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-tronlink-iOS-core_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F01D8998E214E13571E20BEE /* [CP] Embed Pods Frameworks */ = {
+		99C9B2CBD8B2ECC7A63145FD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -536,7 +536,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92D996B9836DFD9A7C348724 /* Pods-tronlink-iOS-core_Example.debug.xcconfig */;
+			baseConfigurationReference = BF7F4EE9928EAE24BAD40E71 /* Pods-tronlink-iOS-core_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2GRA8Q4F9H;
@@ -553,7 +553,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CE200D68803A64152C3C0D1 /* Pods-tronlink-iOS-core_Example.release.xcconfig */;
+			baseConfigurationReference = BCD890005232447C6D8AD2EF /* Pods-tronlink-iOS-core_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2GRA8Q4F9H;
@@ -570,7 +570,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8A3351B52EEAA53A623DC1A /* Pods-tronlink-iOS-core_Tests.debug.xcconfig */;
+			baseConfigurationReference = 589458621B6EAAAB7B2FD2A6 /* Pods-tronlink-iOS-core_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2GRA8Q4F9H;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -593,7 +593,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C89DB4AA1D8E4FE6A66C0FC1 /* Pods-tronlink-iOS-core_Tests.release.xcconfig */;
+			baseConfigurationReference = 48C1D85CDFDD798401F5C97E /* Pods-tronlink-iOS-core_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2GRA8Q4F9H;
 				FRAMEWORK_SEARCH_PATHS = (
