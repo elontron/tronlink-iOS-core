@@ -138,29 +138,32 @@ extension TLWalletCore {
     ///   - unSignedString: string
     ///   - password: wallet password
     ///   - address: wallet address
-    public static func signString(keyStore: KeyStore, unSignedString: String, password: String, address: String) -> String {
     /// - Returns: signed string
+    public static func signString(keyStore: KeyStore, unSignedString: String, password: String, address: String) -> String {
+        
+        // Find the account matching the address
+        guard let account = keyStore.accounts.first(where: { $0.address.data.addressString == address }) else {
+            return ""
+        }
+        
         let signString = unSignedString.signStringHexEncoded
-        let privatekey = walletExportPrivateKey(keyStore: keyStore, password: password, address: address)
-        let prek = PrivateKey.init(Data.init(hex: privatekey))
         let persondata = Data.init(hex: signString)
-
+        
         var apendData = Data()
-        let prefix = "\u{19}TRON Signed Message:\n32"
+        let prefix = "\u{19}TRON Signed Message:\n\(persondata.count)"
         guard let prefixData = prefix.data(using: .ascii) else { return "" }
         apendData.append(prefixData)
         apendData.append(persondata)
-
+        
         let sha3 = SHA3(variant: .keccak256)
-        let Sh3Data =  Data(sha3.calculate(for: apendData.bytesT))
+        let Sh3Data = Data(sha3.calculate(for: apendData.bytesT))
         do {
-            let  signature = try prek.sign(hash: Sh3Data)
-            if #available(iOS 17, *) {
-                return signature.data[0..<32].toHexString().add0x + signature.data[32..<64].toHexString() + (signature.v+27).hex
+            var signature = try keyStore.signHash(Sh3Data, account: account, password: password)
+            if signature[64] >= 27 {
+                signature[64] -= 27
             }
-            return signature.r.serialize().toHexString().add0x + signature.s.serialize().toHexString() + (signature.v+27).hex
-            
-        }catch _ {
+            return signature.toHexString().add0x
+        } catch _ {
             return ""
         }
     }
@@ -174,8 +177,11 @@ extension TLWalletCore {
     ///   - messageType: Optional, defalut is SIGN_MESSAGE_V2_STRING
     /// - Returns: signed string
     public static func signStringV2(keyStore: KeyStore, unSignedString: String, password: String, address: String, _ messageType:TLMessageSignV2Type = .SIGN_MESSAGE_V2_STRING) -> String {
-        let privatekey = walletExportPrivateKey(keyStore: keyStore, password: password, address: address)
-        let prek = PrivateKey.init(Data.init(hex: privatekey))
+        
+        // Find the account matching the address
+        guard let account = keyStore.accounts.first(where: { $0.address.data.addressString == address }) else {
+            return ""
+        }
         
         var persondata = Data.init(hex: unSignedString)
         if case .SIGN_MESSAGE_V2_ARRAY = messageType { //bytes
@@ -203,12 +209,11 @@ extension TLWalletCore {
         let sha3 = SHA3(variant: .keccak256)
         let Sh3Data =  Data(sha3.calculate(for: apendData.bytesT))
         do {
-            let  signature = try prek.sign(hash: Sh3Data)
-            if #available(iOS 17, *) {
-                return signature.data[0..<32].toHexString().add0x + signature.data[32..<64].toHexString() + (signature.v+27).hex
+            var signature = try keyStore.signHash(Sh3Data, account: account, password: password)
+            if signature[64] >= 27 {
+                signature[64] -= 27
             }
-            return signature.r.serialize().toHexString().add0x + signature.s.serialize().toHexString() + (signature.v+27).hex
-
+            return signature.toHexString().add0x
         }catch _ {
             return ""
         }
