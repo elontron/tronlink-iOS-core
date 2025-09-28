@@ -12,6 +12,11 @@ public enum TLMessageSignV2Type {
     case SIGN_MESSAGE_V2_ARRAY
 }
 
+public enum TLMessageSignType {
+    case SIGN_MESSAGE
+    case SIGN_MESSAGE_V2
+}
+
 public class TLWalletCore: NSObject {
     
     public static func signTranscation(keyStore: KeyStore, transaction: Data, password: String, address: String, _ dappChainId: String = "") -> Result<Data, KeystoreError> {
@@ -132,56 +137,95 @@ extension TLWalletCore {
 
 //MARK: - Sign
 extension TLWalletCore {
-    /// sign string
-    /// - Parameters:
-    ///   - keyStore: KeyStore
-    ///   - unSignedString: string
-    ///   - password: wallet password
-    ///   - address: wallet address
-    /// - Returns: signed string
+    /**
+     * @brief Sign a string using a KeyStore
+     *
+     * @param keyStore KeyStore instance containing account information
+     * @param unSignedString The string to be signed
+     * @param password Password to unlock the KeyStore
+     * @param address Account address associated with the string to be signed
+     * @return The signed string
+     */
     public static func signString(keyStore: KeyStore, unSignedString: String, password: String, address: String) -> String {
-        
+        return TLWalletCore.signTypeString(keyStore: keyStore, unSignedString: unSignedString, password: password, address: address, signType:.SIGN_MESSAGE)
+    }
+    
+    /**
+     * @brief Sign a string using a KeyStore (V2 version)
+     *
+     * @param keyStore KeyStore instance containing account information
+     * @param unSignedString The string to be signed
+     * @param password Password to unlock the KeyStore
+     * @param address Account address associated with the string to be signed
+     * @param messageType Message type, defaults to SIGN_MESSAGE_V2_STRING
+     * @return The signed string
+     */
+    public static func signStringV2(keyStore: KeyStore, unSignedString: String, password: String, address: String,_ messageType:TLMessageSignV2Type = .SIGN_MESSAGE_V2_STRING) -> String {
+        return TLWalletCore.signTypeString(keyStore: keyStore, unSignedString: unSignedString, password: password, address: address, signType:.SIGN_MESSAGE_V2, messageType)
+    }
+    
+    /**
+     * @brief Sign a string using a KeyStore, supporting specified sign type and message type
+     *
+     * @param keyStore KeyStore instance containing account information
+     * @param unSignedString The string to be signed
+     * @param password Password to unlock the KeyStore
+     * @param address Account address associated with the string to be signed
+     * @param signType Sign type, defaults to SIGN_MESSAGE
+     * @param messageType Message type, defaults to SIGN_MESSAGE_V2_STRING
+     * @return The signed string
+     */
+    public static func signTypeString(keyStore: KeyStore, unSignedString: String, password: String, address: String, signType: TLMessageSignType = .SIGN_MESSAGE, _ messageType:TLMessageSignV2Type = .SIGN_MESSAGE_V2_STRING) -> String {
         // Find the account matching the address
         guard let account = keyStore.accounts.first(where: { $0.address.data.addressString == address }) else {
             return ""
         }
-        
-        let signString = unSignedString.signStringHexEncoded
-        let persondata = Data.init(hex: signString)
-        
-        var apendData = Data()
-        let prefix = "\u{19}TRON Signed Message:\n\(persondata.count)"
-        guard let prefixData = prefix.data(using: .ascii) else { return "" }
-        apendData.append(prefixData)
-        apendData.append(persondata)
-        
-        let sha3 = SHA3(variant: .keccak256)
-        let Sh3Data = Data(sha3.calculate(for: apendData.bytesT))
+
+        var sha3Data =  TLWalletCore.convertSignStringToSha3Data(unSignedString: unSignedString)
+        if signType == .SIGN_MESSAGE_V2 {
+            sha3Data = TLWalletCore.convertSignStringV2ToSha3Data(unSignedString: unSignedString)
+        }
         do {
-            var signature = try keyStore.signHash(Sh3Data, account: account, password: password)
+            var signature = try keyStore.signHash(sha3Data, account: account, password: password)
             if signature[64] >= 27 {
                 signature[64] -= 27
             }
             return signature.toHexString().add0x
-        } catch _ {
+        }catch _ {
             return ""
         }
     }
     
-    /// sign string v2
-    /// - Parameters:
-    ///   - keyStore: KeyStore
-    ///   - unSignedString: v2 string
-    ///   - password: wallet password
-    ///   - address: wallet address
-    ///   - messageType: Optional, defalut is SIGN_MESSAGE_V2_STRING
-    /// - Returns: signed string
-    public static func signStringV2(keyStore: KeyStore, unSignedString: String, password: String, address: String, _ messageType:TLMessageSignV2Type = .SIGN_MESSAGE_V2_STRING) -> String {
-        
-        // Find the account matching the address
-        guard let account = keyStore.accounts.first(where: { $0.address.data.addressString == address }) else {
-            return ""
-        }
+    /**
+     * @brief Convert the string to be signed into SHA3 data
+     *
+     * @param unSignedString The string to be signed
+     * @return The converted SHA3 data
+     */
+    public static func convertSignStringToSha3Data(unSignedString: String) -> Data {
+        let signString = unSignedString.signStringHexEncoded
+        let persondata = Data.init(hex: signString)
+
+        var apendData = Data()
+        let prefix = "\u{19}TRON Signed Message:\n32"
+        guard let prefixData = prefix.data(using: .ascii) else { return Data() }
+        apendData.append(prefixData)
+        apendData.append(persondata)
+
+        //sh3
+        let sha3 = SHA3(variant: .keccak256)
+        let Sh3Data =  Data(bytes: sha3.calculate(for: apendData.bytesT))
+        return Sh3Data
+    }
+    
+    /**
+     * @brief Convert the string to be signed into SHA3 data (V2 version)
+     *
+     * @param unSignedString The string to be signed
+     * @param messageType Message type, defaults to SIGN_MESSAGE_V2_STRING
+     * @return The converted SHA3 data
+     */
+    public static func convertSignStringV2ToSha3Data(unSignedString: String, messageType:TLMessageSignV2Type = .SIGN_MESSAGE_V2_STRING) -> Data {
         
         var persondata = Data.init(hex: unSignedString)
         if case .SIGN_MESSAGE_V2_ARRAY = messageType { //bytes
@@ -192,7 +236,7 @@ extension TLWalletCore {
                     byteList.append(value)
                 }
             }
-            persondata = Data.init(byteList)
+            persondata = Data.init(bytes:byteList)
         }else if case .SIGN_MESSAGE_V2_STRING = messageType { //String
             persondata = unSignedString.data(using: .utf8) ?? Data()
         }else if case .SIGN_MESSAGE_V2_HASHSTRING = messageType { //HexStringType
@@ -200,23 +244,16 @@ extension TLWalletCore {
         }
 
         let prefix = "\u{19}TRON Signed Message:\n\(persondata.count)"
-        guard let prefixData = prefix.data(using: .ascii) else { return "" }
+        guard let prefixData = prefix.data(using: .ascii) else { return Data() }
 
         var apendData = Data()
         apendData.append(prefixData)
         apendData.append(persondata)
 
+        //sh3
         let sha3 = SHA3(variant: .keccak256)
-        let Sh3Data =  Data(sha3.calculate(for: apendData.bytesT))
-        do {
-            var signature = try keyStore.signHash(Sh3Data, account: account, password: password)
-            if signature[64] >= 27 {
-                signature[64] -= 27
-            }
-            return signature.toHexString().add0x
-        }catch _ {
-            return ""
-        }
+        let Sh3Data =  Data(bytes: sha3.calculate(for: apendData.bytesT))
+        return Sh3Data
     }
     
 }
