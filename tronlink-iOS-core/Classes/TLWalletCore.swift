@@ -204,6 +204,7 @@ extension TLWalletCore {
     public static func convertSignStringToSha3Data(unSignedString: String) -> Data {
         let signString = unSignedString.signStringHexEncoded
         let persondata = Data.init(hex: signString)
+        guard !persondata.isEmpty else { return Data() }
 
         var apendData = Data()
         let prefix = "\u{19}TRON Signed Message:\n32"
@@ -241,6 +242,7 @@ extension TLWalletCore {
             persondata = unSignedString.data(using: .utf8) ?? Data()
         }else if case .SIGN_MESSAGE_V2_HASHSTRING = messageType { //HexStringType
             persondata = Data.init(hex: unSignedString)
+            guard !persondata.isEmpty else { return Data() }
         }
 
         let prefix = "\u{19}TRON Signed Message:\n\(persondata.count)"
