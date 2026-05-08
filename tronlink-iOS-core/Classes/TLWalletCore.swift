@@ -230,12 +230,13 @@ extension TLWalletCore {
         if case .SIGN_MESSAGE_V2_ARRAY = messageType { //bytes
             let list = unSignedString.split(separator: ",")
             var byteList:[UInt8] = [UInt8]()
-            list.forEach { item in
-                if let value = (UInt8)(String(item)) {
-                    byteList.append(value)
+            for item in list {
+                guard let value = UInt8(String(item)) else {
+                    return Data()
                 }
+                byteList.append(value)
             }
-            persondata = Data.init(bytes:byteList)
+            persondata = Data(byteList)
         }else if case .SIGN_MESSAGE_V2_STRING = messageType { //String
             persondata = unSignedString.data(using: .utf8) ?? Data()
         }else if case .SIGN_MESSAGE_V2_HASHSTRING = messageType { //HexStringType
