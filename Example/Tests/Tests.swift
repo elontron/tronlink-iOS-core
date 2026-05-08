@@ -51,6 +51,7 @@ class Tests: XCTestCase {
     
     // create new wallet
     func testCreateWallet() {
+        let exp = expectation(description: "testCreateWallet")
         TLWalletCore.createWalletAccount(keyStore: self.keyStore, password: self.password) {  result in
             switch result {
             case .success(let account):
@@ -63,7 +64,9 @@ class Tests: XCTestCase {
                 XCTAssert(false)
                 break
             }
+            exp.fulfill()
         }
+        wait(for: [exp], timeout: 60)
     }
     
     // Sign Transaction
@@ -131,19 +134,20 @@ class Tests: XCTestCase {
     
     // Sign String
     func testSignMessage() {
+        let exp = expectation(description: "testSignMessage")
         TLWalletCore.createWalletAccount(keyStore: self.keyStore, password: self.password) {  result in
             switch result {
             case .success(let account):
                 let walletAddress = String(base58CheckEncoding: account.address.data)
                 print("createWallet: \(walletAddress)")
                 XCTAssert(walletAddress.count > 0)
-                
+
                 let unSignedString = "abcd"
                 // sign v1
                 let result1 = TLWalletCore.signString(keyStore: self.keyStore, unSignedString: unSignedString, password: self.password, address: walletAddress)
                 print("sign v1: \(result1)")
                 XCTAssert(result1.count > 0)
-                
+
                 // sign v2
                 let messageSignV2: TLMessageSignV2Type = .SIGN_MESSAGE_V2_STRING
                 let result2 = TLWalletCore.signStringV2(keyStore: self.keyStore, unSignedString: unSignedString, password: self.password, address: walletAddress, messageSignV2)
@@ -156,18 +160,21 @@ class Tests: XCTestCase {
                 XCTAssert(false)
                 break
             }
+            exp.fulfill()
         }
+        wait(for: [exp], timeout: 60)
     }
     
     // Export PrivateKey
     func testExportPrivateKey() {
+        let exp = expectation(description: "testExportPrivateKey")
         TLWalletCore.createWalletAccount(keyStore: self.keyStore, password: self.password) {  result in
             switch result {
             case .success(let account):
                 let walletAddress = String(base58CheckEncoding: account.address.data)
                 print("createWallet: \(walletAddress)")
                 XCTAssert(walletAddress.count > 0)
-                
+
                 let privatekey = TLWalletCore.walletExportPrivateKey(keyStore: self.keyStore, password: self.password, address: walletAddress)
                 print("privatekey: \(privatekey)")
                 XCTAssert(privatekey.count > 0)
@@ -178,18 +185,21 @@ class Tests: XCTestCase {
                 XCTAssert(false)
                 break
             }
+            exp.fulfill()
         }
+        wait(for: [exp], timeout: 60)
     }
 
     // Export Mnemonic
     func testExportMnemonic() {
+        let exp = expectation(description: "testExportMnemonic")
         TLWalletCore.createWalletAccount(keyStore: self.keyStore, password: self.password) {  result in
             switch result {
             case .success(let account):
                 let walletAddress = String(base58CheckEncoding: account.address.data)
                 print("createWallet: \(walletAddress)")
                 XCTAssert(walletAddress.count > 0)
-                
+
                 let mnemonic = TLWalletCore.walletExportMnemonic(keyStore: self.keyStore, password: self.password, address: walletAddress)
                 print("mnemonic: \(mnemonic)")
                 XCTAssert(mnemonic.count > 0)
@@ -200,7 +210,9 @@ class Tests: XCTestCase {
                 XCTAssert(false)
                 break
             }
+            exp.fulfill()
         }
+        wait(for: [exp], timeout: 60)
     }
 
 }
