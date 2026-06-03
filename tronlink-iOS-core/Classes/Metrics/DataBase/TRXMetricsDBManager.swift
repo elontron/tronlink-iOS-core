@@ -7,11 +7,24 @@ public class TRXMetricsDBManager: NSObject {
     public static let shared = TRXMetricsDBManager()
     
     private let dataBaseQueue: FMDatabaseQueue?
+    private let healthStateLock = NSLock()
     
     private static let kMigrationDoneKeyPrefix = "TRXMetricsMigrationDone_"
     private static let kDBPathMigrationKey = "TRXMetricsDBPathMigrationDone"
 
-    private(set) var isDBHealthy = true
+    private var _isDBHealthy = true
+    private(set) var isDBHealthy: Bool {
+        get {
+            healthStateLock.lock()
+            defer { healthStateLock.unlock() }
+            return _isDBHealthy
+        }
+        set {
+            healthStateLock.lock()
+            _isDBHealthy = newValue
+            healthStateLock.unlock()
+        }
+    }
 
     private override init() {
         let queue: FMDatabaseQueue?
