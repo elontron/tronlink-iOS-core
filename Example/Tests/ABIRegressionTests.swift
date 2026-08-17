@@ -27,7 +27,7 @@ class ABIRegressionTests: XCTestCase {
                     guard let baseAddress = entropyBuffer.baseAddress else {
                         return false
                     }
-                    mnemonic_from_data(
+                    return mnemonic_from_data(
                         baseAddress.assumingMemoryBound(to: UInt8.self),
                         Int32(entropyLength),
                         mnemonicBuffer.baseAddress,
@@ -89,12 +89,12 @@ class ABIRegressionTests: XCTestCase {
         XCTAssertFalse(EthereumCrypto.verify(signature: Data(count: 65), message: digest, publicKey: Data([0x04]) + Data(count: 64)))
 
         // Correct length, but outside 0 < k < order, where the curve code only has an assert().
-        for outOfRange in [Data(count: 32), Tests.curveOrder, Data(repeating: 0xff, count: 32)] {
+        for outOfRange in [Data(count: 32), Self.curveOrder, Data(repeating: 0xff, count: 32)] {
             XCTAssertTrue(EthereumCrypto.getPublicKey(from: outOfRange).isEmpty)
             XCTAssertTrue(EthereumCrypto.sign(hash: digest, privateKey: outOfRange).isEmpty)
         }
 
-        var belowOrder = Tests.curveOrder
+        var belowOrder = Self.curveOrder
         belowOrder[31] -= 1
         XCTAssertEqual(EthereumCrypto.getPublicKey(from: belowOrder).count, 65)
     }

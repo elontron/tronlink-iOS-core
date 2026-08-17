@@ -320,7 +320,7 @@ extension KeystoreKey: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(address.description.drop0x(), forKey: .address)
+        try container.encode(address.description.drop0x, forKey: .address)
         switch type {
         case .encryptedKey:
             try container.encode(TypeString.privateKey, forKey: .type)
@@ -331,14 +331,5 @@ extension KeystoreKey: Codable {
         try container.encode(id, forKey: .id)
         try container.encode(crypto, forKey: .crypto)
         try container.encode(version, forKey: .version)
-    }
-}
-
-private extension String {
-    func drop0x() -> String {
-        if hasPrefix("0x") {
-            return String(dropFirst(2))
-        }
-        return self
     }
 }
