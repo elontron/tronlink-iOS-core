@@ -1,7 +1,6 @@
 
 import TronKeystore
 import TronCore
-import web3swift
 import CryptoSwift
 
 public enum TLMessageSignV2Type {
@@ -99,8 +98,11 @@ public class TLWalletCore: NSObject {
         var alreadySigned = false
         let accountSigner = Data(account.address.data.suffix(20))
         for (index, value) in transaction.signatureArray.enumerated() {
-            guard let signature = value as? Data,
-                  let signer = try? Web3.Utils.hashECRecover(hash: newHash, signature: signature).addressData else {
+            guard let signature = value as? Data else {
+                continue
+            }
+            let signer = EthereumCrypto.recoverAddress(hash: newHash, signature: signature)
+            guard signer.count == 20 else {
                 continue
             }
             alreadySigned = alreadySigned || signer == accountSigner
