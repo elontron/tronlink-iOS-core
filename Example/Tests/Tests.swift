@@ -1,6 +1,5 @@
 import XCTest
 @testable import TLCore
-import TronKeystore
 
 private final class AddressMappingStoreStub: TRXAddressMappingStore {
     var loadResult: [String: String]?

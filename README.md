@@ -28,6 +28,11 @@ tronlink-iOS-core is available through [CocoaPods](https://cocoapods.org). To in
 pod 'tronlink-iOS-core'
 ```
 
+Version 2.0 includes the wallet ABI, Trezor cryptography, and keystore sources
+in the single `TLCore` module. Applications upgrading from the standalone Pods
+must replace `import TronCore` and `import TronKeystore` with `import TLCore`.
+Public type names and keystore serialization formats are unchanged.
+
 ## Demo
 
 - [Create wallet](./Example/Tests/Tests.swift)
@@ -35,5 +40,4 @@ pod 'tronlink-iOS-core'
 - [Sign message](./Example/Tests/Tests.swift)
 - [Export PrivateKey](./Example/Tests/Tests.swift)
 - [Export Mnemonic](./Example/Tests/Tests.swift)
-
 

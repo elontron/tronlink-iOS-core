@@ -5,9 +5,6 @@ use_frameworks!
 platform :ios, '13.0'
 
 target 'tronlink-iOS-core_Example' do
-  pod 'TronWalletABI', :path => '/Users/elonxu/Desktop/elonsu7/tron-wallet-abi'
-  pod 'TronWalletKeystore', :path => '/Users/elonxu/Desktop/elonsu7/tron-wallet-keystore'
-
   pod 'tronlink-iOS-core', :path => '../'
 
   target 'tronlink-iOS-core_Tests' do
@@ -40,4 +37,3 @@ post_install do |installer|
       end
     end
 end
-

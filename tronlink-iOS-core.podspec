@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'tronlink-iOS-core'
-  s.version          = '1.0.7'
+  s.version          = '2.0.0'
   s.summary          = 'tronlink-iOS-core is repo of TronLink'
   s.module_name      = 'TLCore'
 
@@ -11,7 +11,8 @@ Pod::Spec.new do |s|
   s.platform = :ios, '13.0'
   s.swift_versions = '4.2'
 
-  s.source_files = 'tronlink-iOS-core/Classes/**/*'
+  s.source_files = 'tronlink-iOS-core/Classes/**/*.{swift,h,m,c}'
+  s.module_map = 'tronlink-iOS-core/TLCore.modulemap'
 
   s.dependency 'gRPC', '1.68.1'
   s.dependency 'Protobuf', '3.29.6'
@@ -19,14 +20,49 @@ Pod::Spec.new do |s|
   s.dependency 'gRPC-ProtoRPC', '1.68.1'
   s.dependency 'gRPC-RxLibrary', '1.68.1'
    
-   s.dependency 'TronWalletABI', '1.0.2'
-   s.dependency 'TronWalletKeystore', '1.0.5'
-   s.dependency 'FMDB', '2.7.5'
-   
-   s.requires_arc = false
-   # Generated *.pbobjc.m must stay MRC; only the RPC layer is ARC.
-   # CocoaPods expands this pattern from the pod root, whereas Dir[] here would
-   # resolve against the installing project's CWD and silently yield [].
-   # covers *.pbrpc.m only — a hand-written ARC .m needs adding here.
-   s.requires_arc = 'tronlink-iOS-core/Classes/gRPC/**/*.pbrpc.m'
+  s.dependency 'BigInt', '3.1.0'
+  s.dependency 'CryptoSwift', '1.8.4'
+  s.dependency 'FMDB', '2.7.5'
+  s.framework = 'Security'
+
+  trezor_headers = 'tronlink-iOS-core/Classes/ABI/TrezorCrypto/trezor-crypto'
+  s.preserve_paths = [
+    "#{trezor_headers}/*.table",
+    "#{trezor_headers}/LICENSE",
+    'LICENSES/*'
+  ]
+
+  # Macro fragments and non-self-contained headers must not be imported by the
+  # TLCore umbrella. TrezorCrypto.h exposes the usable C API in dependency order.
+  s.private_header_files = [
+    "#{trezor_headers}/nem_serialize.h",
+    "#{trezor_headers}/bip39_english.h",
+    "#{trezor_headers}/blake2_common.h",
+    "#{trezor_headers}/check_mem.h",
+    "#{trezor_headers}/groestl_internal.h",
+    "#{trezor_headers}/aes/aesopt.h",
+    "#{trezor_headers}/aes/aestab.h",
+    "#{trezor_headers}/chacha20poly1305/ecrypt-machine.h",
+    "#{trezor_headers}/chacha20poly1305/ecrypt-portable.h",
+    "#{trezor_headers}/chacha20poly1305/poly1305-donna-32.h",
+    "#{trezor_headers}/ed25519-donna/curve25519-donna-scalarmult-base.h",
+    "#{trezor_headers}/ed25519-donna/ed25519-hash-custom.h",
+    "#{trezor_headers}/ed25519-donna/ed25519-hash-custom-keccak.h",
+    "#{trezor_headers}/ed25519-donna/ed25519-hash-custom-sha3.h",
+    "#{trezor_headers}/ed25519-donna/ed25519-keccak.h",
+    "#{trezor_headers}/ed25519-donna/ed25519-sha3.h"
+  ]
+
+  trezor = "$(PODS_TARGET_SRCROOT)/#{trezor_headers}"
+  s.pod_target_xcconfig = {
+    'SWIFT_OPTIMIZATION_LEVEL' => '-Owholemodule',
+    'HEADER_SEARCH_PATHS' => "$(inherited) \"#{trezor}\" \"#{trezor}/aes\" \"#{trezor}/chacha20poly1305\" \"#{trezor}/ed25519-donna\""
+  }
+
+  # Generated *.pbobjc.m stays MRC. RPC and migrated ABI Objective-C files
+  # retain the ARC mode used by their original Pods.
+  s.requires_arc = [
+    'tronlink-iOS-core/Classes/gRPC/**/*.pbrpc.m',
+    'tronlink-iOS-core/Classes/ABI/**/*.m'
+  ]
 end
